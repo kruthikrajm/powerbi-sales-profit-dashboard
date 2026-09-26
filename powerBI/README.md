@@ -1,178 +1,170 @@
-# Power BI Sales & Profit Analysis Dashboard
+# Sales & Profit Analytics Dashboard
 
 ## Project Overview
 
-This project presents an interactive **Sales & Profit Analysis Dashboard** developed using **MySQL and Microsoft Power BI**.
+The **Sales & Profit Analytics Dashboard** is an end-to-end Business Intelligence project built using **MySQL, SQL, Power BI, and DAX**. The project transforms raw Superstore sales data into a structured analytical data model and an interactive four-page Power BI dashboard.
 
-The project focuses on transforming raw business data into meaningful insights through SQL-based data preparation and analysis, followed by interactive visualization and dashboard development in Power BI.
-
-The dashboard provides an overview of sales performance, profitability, customer activity, product performance, and regional trends to support data-driven business analysis.
+The dashboard provides insights into **sales performance, profitability, customer behaviour, regional performance, and shipping operations**, helping users explore business performance through interactive filters and visualisations.
 
 ## Objectives
 
-* Analyze overall sales and profit performance
-* Identify sales and profit trends over time
-* Compare sales and profitability across regions
-* Analyze product and category performance
-* Understand customer purchasing patterns
-* Identify high-performing and underperforming products
-* Create interactive reports for exploring business performance
-* Present business insights through clear and intuitive visualizations
+* Analyse overall sales and profit performance.
+* Identify trends in sales and profitability over time.
+* Compare performance across product categories and sub-categories.
+* Analyse customer segments and top-performing customers.
+* Evaluate regional sales and profitability.
+* Analyse shipping methods and delivery performance.
+* Build an interactive dashboard for business-oriented analysis.
 
 ## Tools & Technologies
 
-* **MySQL** – Data querying, filtering, aggregation, joins, and data preparation
-* **Power BI** – Data modelling, DAX, interactive dashboards, and data visualization
-* **Microsoft Excel** – Data inspection, preparation, and preliminary analysis
+* **MySQL** – Database management and data preparation
+* **SQL** – Data cleaning, transformation and business analysis
+* **Power BI** – Interactive dashboard and visualisation
+* **DAX** – Measures, KPIs and year-over-year analysis
+* **Excel** – Original source data
 
-## SQL Analysis
+## Data Model
 
-MySQL was used as an important part of the data analysis workflow before developing the Power BI dashboard.
+The project uses a **star schema** to organise the data for analytical reporting.
 
-The SQL analysis included:
+### Fact Table
 
-* Data exploration and validation
-* Filtering and sorting data
-* Aggregating sales and profit metrics
-* Grouping data by different business dimensions
-* Using SQL joins to combine related data
-* Analyzing sales by region, product, category, and customer
-* Preparing data for visualization and reporting
+* `fact_sales` – Transaction-level sales information
 
-These SQL queries helped identify relevant business metrics and prepare the data for further analysis in Power BI.
+### Dimension Tables
+
+* `dim_customer` – Customer information
+* `dim_product` – Product, category and sub-category information
+* `dim_location` – Geographic information
+* `dim_ship_mode` – Shipping methods
+* `dim_date` – Continuous date dimension
+
+The final model contains **9,994 sales transactions**, with dedicated dimension tables connected to the fact table through one-to-many relationships.
+
+## Data Preparation
+
+The raw Superstore dataset was first loaded into MySQL and processed using SQL.
+
+Key steps included:
+
+* Importing the raw CSV data into MySQL.
+* Cleaning text fields using `TRIM()`.
+* Converting order and shipping dates into proper `DATE` values.
+* Calculating shipping duration using `DATEDIFF()`.
+* Creating year and month attributes.
+* Creating profit margin calculations.
+* Building dimension tables for customers, products, locations, shipping modes and dates.
+* Creating a fact table containing transaction-level sales data.
+* Validating row counts, keys and relationships between fact and dimension tables.
+* Creating SQL views for monthly, category, regional and customer-level analysis.
 
 ## Power BI Dashboard
 
-The prepared data was imported into Power BI, where a data model was developed and interactive reports were created.
-
-### Dashboard Pages
+The Power BI report contains four analytical pages:
 
 ### 1. Executive Overview
 
-Provides a high-level view of overall business performance.
+Provides a high-level view of business performance using:
 
-Key metrics and analysis include:
+* Total Sales
+* Total Profit
+* Profit Margin
+* Total Orders
+* Total Customers
+* Total Quantity
+* Monthly Sales Trend
+* Sales by Region
+* Profit by Category
+* Top 10 Products by Sales
+
+### 2. Sales & Profit Analysis
+
+Focuses on sales trends and profitability:
+
+* Monthly Sales vs Profit
+* Sales Year-over-Year Growth
+* Profit Year-over-Year Growth
+* Profit by Category
+* Profit by Sub-Category
+* Discount vs Profit analysis
+* Sales by Customer Segment
+
+### 3. Customer Analysis
+
+Analyses customer behaviour and contribution:
+
+* Total Customers
+* Total Orders
+* Sales per Customer
+* Average Order Value
+* Sales by Customer Segment
+* Profit by Customer Segment
+* Top 10 Customers by Sales
+* Top 10 Customers by Profit
+* Customer Sales vs Profit
+
+### 4. Regional & Shipping Analysis
+
+Provides geographic and operational insights:
+
+* Sales by Region
+* Profit by Region
+* Regional Sales vs Profit
+* Top 10 States by Sales
+* Average Shipping Time by Ship Mode
+* Orders by Ship Mode
+* Order Distribution by Shipping Days
+
+## Key DAX Measures
+
+Some of the main measures created for the dashboard include:
 
 * Total Sales
 * Total Profit
 * Total Orders
 * Total Customers
+* Total Quantity
 * Profit Margin
-* Monthly sales trends
-* Regional sales performance
-* Sales and profit performance
+* Average Order Value
+* Sales per Customer
+* Sales YoY %
+* Profit YoY %
+* Average Discount
+* Average Shipping Days
 
-### 2. Sales & Profit Analysis
+## Dashboard Features
 
-Provides a detailed analysis of sales and profitability across different time periods and business dimensions.
-
-The page helps explore:
-
-* Sales trends
-* Profit trends
-* Sales versus profit
-* Regional performance
-* Category performance
-* Profitability patterns
-
-### 3. Product Analysis
-
-Analyzes product and category performance to identify products contributing to overall sales and profitability.
-
-The analysis includes:
-
-* Top-performing products
-* Lower-performing products
-* Sales by category
-* Profit by category
-* Product-level performance
-* Category comparisons
-
-### 4. Customer Analysis
-
-Provides insights into customer activity and purchasing behaviour.
-
-The analysis includes:
-
-* Customer performance
-* Customer sales contribution
-* Customer purchasing patterns
-* Customer-level comparisons
-* Sales and profit by customer
-
-## Key Features
-
-* Interactive KPI cards
-* Sales and profit trend analysis
-* Regional performance analysis
-* Product and category analysis
-* Customer analysis
-* Interactive slicers and filters
-* Cross-page filtering
-* Interactive dashboard navigation
-* Data-driven visual reporting
-* User-friendly dashboard design
+* Interactive slicers
+* Cross-filtering between visualisations
+* Synchronized filters across dashboard pages
+* Page navigation
+* Drill-through capability
+* KPI cards
+* Interactive charts and tables
+* Star-schema data model
+* SQL-backed data preparation and analysis
 
 ## Project Workflow
 
-The project followed the following data analysis workflow:
-
-1. Collected and examined the raw business dataset
-2. Inspected the data for structure, quality, and relevant fields
-3. Used **MySQL** for data exploration and preparation
-4. Performed SQL filtering, aggregation, grouping, and joins
-5. Prepared the required data for reporting
-6. Imported the data into **Power BI**
-7. Created the Power BI data model and relationships
-8. Developed calculated measures using **DAX**
-9. Created KPI cards and interactive visualizations
-10. Developed multiple dashboard pages for different areas of analysis
-11. Added slicers, cross-page filtering, and interactive navigation
-12. Applied final formatting and dashboard design improvements
-
-## Business Insights
-
-The dashboard enables users to explore business performance from multiple perspectives, including:
-
-* Overall sales and profitability
-* Changes in performance over time
-* Regional differences in sales and profit
-* Product and category contribution
-* Customer purchasing activity
-* Products and categories with stronger or weaker performance
-
-The combination of **SQL analysis and Power BI visualization** provides an end-to-end workflow for transforming business data into an interactive analytical report.
-
-## Project Files
-
 ```text
-powerbi-sales-profit-dashboard/
-│
-├── README.md
-└── ProwerBiProject.pbix
+Raw Superstore Data
+        ↓
+      MySQL
+        ↓
+SQL Data Cleaning & Transformation
+        ↓
+      Star Schema
+        ↓
+    Power BI Import
+        ↓
+       DAX
+        ↓
+Interactive 4-Page Dashboard
 ```
 
-## Skills Demonstrated
+## Outcome
 
-This project demonstrates practical experience in:
+This project demonstrates an end-to-end BI workflow, from **raw data ingestion and SQL-based transformation to dimensional modelling, DAX calculations and interactive Power BI reporting**.
 
-* SQL / MySQL
-* Data cleaning and preparation
-* Data analysis
-* Data aggregation
-* Relational data and joins
-* Power BI
-* Data modelling
-* DAX
-* Data visualization
-* Dashboard development
-* Interactive reporting
-* Business intelligence
-
-## Author
-
-**Kruthik Raj M**
-
-MSc Data Science
-Queen Mary University of London
-
+It was developed to demonstrate practical skills in **SQL, data modelling, data analysis, Power BI visualisation and business intelligence reporting**.
